@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yog Trivedi - Computer Science Student & Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">YT</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#resume" class="nav-link">Resume</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section - 3D Globe/Constellation -->
+    <section id="home" class="home-section">
+        <div class="watercolor-bg"></div>
+        <div class="globe-container">
+            <canvas id="globe-canvas"></canvas>
+            <div class="globe-overlay">
+                <h1 class="main-title">
+                    <span class="title-line">Yog</span>
+                    <span class="title-line">Trivedi</span>
+                </h1>
+                <p class="subtitle">Computer Science Student & Developer</p>
+            </div>
+            
+            <!-- Interactive Stars -->
+            <div class="interactive-stars">
+                <div class="star-item" data-experience="data-mine">
+                    <div class="star-shape">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="star-label">Data Mine</div>
+                </div>
+                
+                <div class="star-item" data-experience="research">
+                    <div class="star-shape">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="star-label">Research</div>
+                </div>
+                
+                <div class="star-item" data-experience="projects">
+                    <div class="star-shape">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="star-label">Projects</div>
+                </div>
+                
+                <div class="star-item" data-experience="leadership">
+                    <div class="star-shape">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="star-label">Leadership</div>
+                </div>
+                
+                <div class="star-item" data-experience="skills">
+                    <div class="star-shape">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="star-label">Skills</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm a Computer Science student at Purdue University with a passion for machine learning, 
+                        data science, and software development. I'm currently working on AI-powered solutions 
+                        and predictive modeling while developing full-stack applications.
+                    </p>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>Java & C Programming</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Machine Learning</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>Data Science</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-language"></i>
+                            <span>Multilingual</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="profile-card">
+                        <div class="profile-image"></div>
+                        <div class="profile-info">
+                            <h3>Yog Trivedi</h3>
+                            <p>Full Stack Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            <div class="resume-content">
+                <div class="resume-tabs">
+                    <button class="tab-btn active" data-tab="experience">Experience</button>
+                    <button class="tab-btn" data-tab="education">Education</button>
+                    <button class="tab-btn" data-tab="skills">Skills</button>
+                </div>
+                <div class="resume-tab-content">
+                    <div class="tab-panel active" id="experience">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Undergraduate Researcher</h3>
+                                    <h4>Indiana University Luddy School of Informatics</h4>
+                                    <span class="timeline-date">August 2025 - Present</span>
+                                    <p>Developing a Python-based predictive model to identify and map potential disease occurrences within human cells under Professor Rakesh Shiradkar.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Data Science Intern</h3>
+                                    <h4>The Data Mine, Purdue University</h4>
+                                    <span class="timeline-date">August 2025 - Present</span>
+                                    <p>Collaborated with Corteva Agriscience to build a chatbot for training new formula scientists. Trained in R and Python for machine learning applications.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h3>Food Runner</h3>
+                                    <h4>Topgolf Pittsburgh, PA</h4>
+                                    <span class="timeline-date">June 2022 - August 2022</span>
+                                    <p>Efficiently prepared and delivered food orders, ensuring high-quality dining. Collaborated with kitchen and service teams for fast, accurate, and clean service.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="education">
+                        <div class="education-grid">
+                            <div class="education-item">
+                                <h3>Bachelor of Science in Computer Science</h3>
+                                <h4>Purdue University, College of Science</h4>
+                                <span class="education-date">Expected Graduation: Class of 2028</span>
+                                <p>West Lafayette, IN</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="skills">
+                        <div class="skills-categories">
+                            <div class="skill-category">
+                                <h3>Programming Languages</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">C</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">R</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Data Science & ML</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Machine Learning</span>
+                                    <span class="skill-tag">Predictive Modeling</span>
+                                    <span class="skill-tag">Data Analysis</span>
+                                    <span class="skill-tag">Chatbot Development</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Languages</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">English</span>
+                                    <span class="skill-tag">Gujarati (Fluent)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>FriendFusion</h3>
+                        <p>Fully functional social media app with account creation, friend management, commenting, and post creation features</p>
+                        <div class="project-tech">
+                            <span>Java</span>
+                            <span>JFrame</span>
+                            <span>Database Integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Disease Prediction Model</h3>
+                        <p>Python-based predictive model to identify and map potential disease occurrences within human cells</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>Data Science</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Corteva Chatbot</h3>
+                        <p>AI chatbot for training new formula scientists at Corteva Agriscience</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>R</span>
+                            <span>Machine Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>trivediy@purdue.edu</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>412-518-8913</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Pittsburgh, PA 15241</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Purdue University, Class of 2028</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>Resume Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    <p>Hello! I'm your resume assistant. Ask me anything about Yog's experience, skills, or projects!</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" placeholder="Ask about my resume..." id="chatbotInput">
+                <button id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
