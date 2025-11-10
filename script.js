@@ -376,69 +376,83 @@ function initChatbot() {
     const chatbotSend = document.getElementById('chatbotSend');
     const chatbotMessages = document.getElementById('chatbotMessages');
 
-    // Resume data for chatbot
+    // Resume data for chatbot - COMPLETE RESUME
     const resumeData = {
+        personalInfo: {
+            name: "Yog Trivedi",
+            location: "Pittsburgh, PA 15241",
+            phone: "412-518-8913",
+            email: "trivediy@purdue.edu",
+            website: "https://yogtrivedi.github.io"
+        },
         experience: [
-            {
-                title: "Undergraduate Researcher",
-                company: "Indiana University Luddy School of Informatics",
-                duration: "August 2025 - Present",
-                description: "Developing a Python-based predictive model to identify and map potential disease occurrences within human cells under Professor Rakesh Shiradkar."
-            },
             {
                 title: "Data Science Intern",
                 company: "The Data Mine, Purdue University",
+                location: "Indianapolis, IN",
                 duration: "August 2025 - Present",
-                description: "Collaborated with Corteva Agriscience to build a chatbot for training new formula scientists. Trained in R and Python for machine learning applications."
+                description: "Collaborated with Corteva Agriscience on building a chatbot to train onboarding formula scientists. Trained to use R and Python in TDM 101 for machine learning used in training the chatbot."
+            },
+            {
+                title: "Undergraduate Researcher",
+                company: "Indiana University Luddy School of Informatics",
+                location: "Indianapolis, IN",
+                duration: "August 2025 - Present",
+                description: "Undergraduate researcher under Professor Rakesh Shiradkar. Developing a Python based predictive model to identify and map potential disease occurrences within human prostate cells."
             },
             {
                 title: "Food Runner",
-                company: "Topgolf Pittsburgh, PA",
+                company: "Topgolf",
+                location: "Pittsburgh, PA",
                 duration: "June 2022 - August 2022",
-                description: "Efficiently prepared and delivered food orders, ensuring high-quality dining. Collaborated with kitchen and service teams for fast, accurate, and clean service."
+                description: "Worked as a Food Runner at Topgolf, efficiently preparing and delivering food orders to guests, ensuring a high quality dining experience. Collaborated with kitchen and service teams to maintain fast, accurate, and clean service."
             }
         ],
         education: [
             {
-                degree: "Bachelor of Science in Computer Science",
+                degree: "Bachelor of Science, Computer Science",
                 school: "Purdue University, College of Science",
-                year: "Expected Graduation: Class of 2028",
-                location: "West Lafayette, IN"
+                location: "West Lafayette, IN",
+                year: "Class of 2028"
             }
         ],
         skills: {
             programming: ["Java", "C", "Python", "R"],
-            dataScience: ["Machine Learning", "Predictive Modeling", "Data Analysis", "Chatbot Development"],
-            languages: ["English", "Gujarati (Fluent)"]
+            specializations: ["Machine Learning", "Predictive Modeling", "Data Analysis", "Chatbot Development", "Thread-Safe Database Integration", "Memory Management"],
+            languages: ["English", "Gujarati (Fluent)"],
+            frameworks: ["Next.js", "TensorFlow.js", "Framer Motion"]
         },
         projects: [
             {
+                name: "Passionfruit",
+                achievement: "3rd place at the first ever BDPA Indianapolis hackathon",
+                description: "Built an AI-driven interview coaching platform with Next.js 15, Tailwind, Framer Motion, and Zustand, delivering responsive UI, dark/light theming, and animated hero experiences that increased session engagement. Implemented real-time face-tracking analytics (TensorFlow.js) to surface eye-contact, posture, and expression metrics, boosting interviewer-readiness insights by 35% during mock interviews. Engineered a Gemini-powered resume critique service with PDF/DOCX parsing (pdf-parse, mammoth), role-based evaluations, and actionable growth tips enriched with learning resources, reducing manual resume review time by 60%. Developed an AI coaching API layer that orchestrates OpenAI and Gemini responses, provides scripted interview feedback, and maintains provider fallbacks to ensure reliable user guidance. Enhanced accessibility and onboarding with camera-use notifications, animated UI cues, and voice synthesis using human-like speech selection, improving feature adoption across the interview workflow.",
+                tech: ["Next.js 15", "TensorFlow.js", "Gemini AI", "OpenAI", "Tailwind", "Framer Motion", "Zustand"]
+            },
+            {
                 name: "FriendFusion",
-                description: "Fully functional social media app with account creation, friend management, commenting, and post creation features",
-                tech: ["Java", "JFrame", "Database Integration"]
+                description: "Developed a fully functioning social media app titled FriendFusion, leveraging Java for the backend and JFrame for the frontend. Implemented core features including account creation, login, user search, friend management (add/block), commenting, upvoting/downvoting comments, and post creation.",
+                tech: ["Java", "JFrame", "Database Integration", "Thread-Safe Programming"]
             },
             {
                 name: "Disease Prediction Model",
-                description: "Python-based predictive model to identify and map potential disease occurrences within human cells",
-                tech: ["Python", "Machine Learning", "Data Science"]
-            },
-            {
-                name: "Corteva Chatbot",
-                description: "AI chatbot for training new formula scientists at Corteva Agriscience",
-                tech: ["Python", "R", "Machine Learning"]
+                description: "Python-based predictive model to identify and map potential disease occurrences within human prostate cells",
+                tech: ["Python", "Machine Learning", "Predictive Modeling"]
             }
         ],
         leadership: [
             {
                 title: "Assistant Instructor",
                 organization: "C.S Kim Karate",
+                location: "Pittsburgh, PA",
                 duration: "2015 - Present",
-                description: "Served as an Assistant Instructor for Master Kelly in Tang Soo Do, supporting students' training and skill development. Achieved First Degree Black Belt (Cho Dan) and is a Certified Instructor."
+                description: "Served as an Assistant Instructor for Master Kelly in Tang Soo Do under C.S. Kim Karate, supporting students' training and skill development while reinforcing techniques and discipline. Achieved First Degree Black Belt (Cho Dan) as a Certified Instructor with C.S. Kim Karate."
             },
             {
                 title: "Team Director",
                 organization: "Jubilee Soup Kitchen",
-                description: "Directed the Jubilee Soup Kitchen team in Pittsburgh, overseeing operations and instructing new volunteers in cooking, cleaning, and serving food to the homeless."
+                location: "Pittsburgh",
+                description: "Directed the Jubilee Soup Kitchen team in Pittsburgh, overseeing operations and providing instructions to new volunteers in cooking, cleaning, and serving food to the homeless."
             }
         ]
     };
@@ -486,42 +500,67 @@ function initChatbot() {
     function generateResponse(question, data) {
         const lowerQuestion = question.toLowerCase();
         
+        // Contact/Personal Info
+        if (lowerQuestion.includes('contact') || lowerQuestion.includes('email') || lowerQuestion.includes('phone')) {
+            return `You can reach Yog at ${data.personalInfo.email} or call ${data.personalInfo.phone}. He's based in ${data.personalInfo.location}. Visit his portfolio at ${data.personalInfo.website}`;
+        }
+        
         // Experience questions
         if (lowerQuestion.includes('experience') || lowerQuestion.includes('work') || lowerQuestion.includes('job')) {
-            return `I have ${data.experience.length} professional experiences. My current roles include: ${data.experience[0].title} at ${data.experience[0].company} (${data.experience[0].duration}) - ${data.experience[0].description}. I also work as a ${data.experience[1].title} at ${data.experience[1].company} (${data.experience[1].duration}) - ${data.experience[1].description}.`;
+            return `Yog has ${data.experience.length} professional experiences. Currently: (1) ${data.experience[0].title} at ${data.experience[0].company} - ${data.experience[0].description}. (2) ${data.experience[1].title} at ${data.experience[1].company} under Professor Rakesh Shiradkar - ${data.experience[1].description}. Previously worked at Topgolf as a Food Runner (June-Aug 2022).`;
         }
         
         // Education questions
-        if (lowerQuestion.includes('education') || lowerQuestion.includes('degree') || lowerQuestion.includes('school')) {
-            return `I'm currently pursuing a ${data.education[0].degree} from ${data.education[0].school} (${data.education[0].year}) in ${data.education[0].location}.`;
+        if (lowerQuestion.includes('education') || lowerQuestion.includes('degree') || lowerQuestion.includes('school') || lowerQuestion.includes('purdue')) {
+            return `Yog is pursuing a ${data.education[0].degree} at ${data.education[0].school} in ${data.education[0].location}, ${data.education[0].year}.`;
         }
         
         // Skills questions
-        if (lowerQuestion.includes('skill') || lowerQuestion.includes('technology') || lowerQuestion.includes('tech')) {
-            return `I have expertise in programming languages (${data.skills.programming.join(', ')}), data science and machine learning (${data.skills.dataScience.join(', ')}), and I'm fluent in ${data.skills.languages.join(' and ')}.`;
+        if (lowerQuestion.includes('skill') || lowerQuestion.includes('technology') || lowerQuestion.includes('tech') || lowerQuestion.includes('language')) {
+            return `Programming: ${data.skills.programming.join(', ')}. Specializations: ${data.skills.specializations.join(', ')}. Frameworks: ${data.skills.frameworks.join(', ')}. Languages: ${data.skills.languages.join(' and ')}.`;
         }
         
-        // Project questions
+        // Passionfruit specific
+        if (lowerQuestion.includes('passionfruit') || lowerQuestion.includes('hackathon') || lowerQuestion.includes('bdpa')) {
+            return `Passionfruit won 3rd place at the first ever BDPA Indianapolis hackathon! It's an AI-driven interview coaching platform built with Next.js 15, TensorFlow.js for real-time face tracking (35% improvement in readiness insights), Gemini AI for resume critique (60% reduction in review time), and includes OpenAI integration for coaching feedback.`;
+        }
+        
+        // FriendFusion specific
+        if (lowerQuestion.includes('friendfusion') || lowerQuestion.includes('social media')) {
+            return `FriendFusion is a fully functioning social media app built with Java backend and JFrame frontend. Features: account creation, login, user search, friend management (add/block), commenting, upvoting/downvoting, and post creation. Demonstrates strong proficiency in thread-safe database integration.`;
+        }
+        
+        // Research/Disease Model
+        if (lowerQuestion.includes('research') || lowerQuestion.includes('disease') || lowerQuestion.includes('prostate') || lowerQuestion.includes('iu')) {
+            return `Yog is an Undergraduate Researcher at Indiana University Luddy School of Informatics under Professor Rakesh Shiradkar. He's developing a Python-based predictive model to identify and map potential disease occurrences within human prostate cells using machine learning.`;
+        }
+        
+        // Data Mine/Corteva
+        if (lowerQuestion.includes('data mine') || lowerQuestion.includes('corteva') || lowerQuestion.includes('chatbot')) {
+            return `At The Data Mine (Purdue), Yog collaborated with Corteva Agriscience to build a chatbot for training onboarding formula scientists. He's trained in R and Python for machine learning applications used in the chatbot.`;
+        }
+        
+        // Project questions (general)
         if (lowerQuestion.includes('project') || lowerQuestion.includes('portfolio')) {
-            return `I've worked on several projects including: ${data.projects[0].name} (${data.projects[0].description}), ${data.projects[1].name} (${data.projects[1].description}), and ${data.projects[2].name} (${data.projects[2].description}).`;
+            return `Yog's key projects: (1) Passionfruit - 3rd place BDPA hackathon winner, AI interview coach with TensorFlow face tracking; (2) FriendFusion - Full social media app in Java; (3) Disease Prediction Model - Python ML for prostate cell analysis.`;
         }
         
         // Leadership questions
-        if (lowerQuestion.includes('leadership') || lowerQuestion.includes('karate') || lowerQuestion.includes('volunteer')) {
-            return `I have leadership experience as a ${data.leadership[0].title} at ${data.leadership[0].organization} (${data.leadership[0].duration}) - ${data.leadership[0].description}. I also served as a ${data.leadership[1].title} at ${data.leadership[1].organization} - ${data.leadership[1].description}.`;
+        if (lowerQuestion.includes('leadership') || lowerQuestion.includes('karate') || lowerQuestion.includes('volunteer') || lowerQuestion.includes('soup kitchen')) {
+            return `Leadership: (1) C.S. Kim Karate Assistant Instructor (2015-Present) - First Degree Black Belt (Cho Dan), teaches Tang Soo Do under Master Kelly. (2) Jubilee Soup Kitchen Team Director - Oversees operations and trains volunteers in cooking, cleaning, and serving food to the homeless in Pittsburgh.`;
         }
         
         // General questions
         if (lowerQuestion.includes('hello') || lowerQuestion.includes('hi')) {
-            return "Hello! I'm Yog's resume assistant. You can ask me about his experience, education, skills, or projects. What would you like to know?";
+            return "Hello! I'm Yog's resume assistant. Ask me about his hackathon wins, research at IU, Data Mine work, projects like Passionfruit or FriendFusion, skills, or leadership experience!";
         }
         
-        if (lowerQuestion.includes('who') || lowerQuestion.includes('what')) {
-            return "I'm an AI assistant for Yog Trivedi's portfolio. I can help you learn about his professional background, skills, and projects. Feel free to ask me anything!";
+        if (lowerQuestion.includes('who')) {
+            return `Yog Trivedi is a Computer Science student at Purdue University (Class of 2028) from Pittsburgh, PA. He's a researcher, hackathon winner, karate instructor, and passionate about AI/ML and software development.`;
         }
         
         // Default response
-        return "I can help you learn about Yog's professional background. Try asking about his experience, education, skills, or projects. For example, you could ask 'What is his work experience?' or 'What technologies does he know?'";
+        return "I can help you learn about Yog's background! Try asking about: Passionfruit (hackathon winner), his research at IU, Data Mine internship, FriendFusion project, programming skills, or karate instructor experience.";
     }
 }
 
