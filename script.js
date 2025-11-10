@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeToggle();
     initHeroSections();
     initProfileCard();
+    initTypingAnimation();
 });
 
 // 3D Globe Implementation
@@ -956,6 +957,68 @@ function initProfileCard() {
     targetX = centerX;
     targetY = centerY;
     setVarsFromXY(centerX, centerY);
+}
+
+// Typing Animation
+function initTypingAnimation() {
+    const typingElement = document.querySelector('.typing-text');
+    if (!typingElement) return;
+    
+    const texts = [
+        'Computer Science Student',
+        'Full Stack Developer',
+        'Machine Learning Enthusiast',
+        'Problem Solver'
+    ];
+    
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+    
+    const typingSpeed = 80;
+    const deletingSpeed = 50;
+    const pauseDuration = 2000;
+    const initialDelay = 1500;
+    
+    function type() {
+        const currentText = texts[textIndex];
+        
+        if (isPaused) {
+            setTimeout(type, pauseDuration);
+            isPaused = false;
+            return;
+        }
+        
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            
+            if (charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, 500);
+                return;
+            }
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            
+            if (charIndex === currentText.length) {
+                isPaused = true;
+                isDeleting = true;
+                setTimeout(type, pauseDuration);
+                return;
+            }
+        }
+        
+        setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+    
+    // Start typing after initial delay
+    setTimeout(() => {
+        type();
+    }, initialDelay);
 }
 
 // Add parallax effect to background
