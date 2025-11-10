@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeroSections();
     initProfileCard();
     initTypingAnimation();
+    initShuffleText();
 });
 
 // 3D Globe Implementation
@@ -49,37 +50,88 @@ function initGlobe() {
 function createGlobe() {
     const geometry = new THREE.SphereGeometry(1, 64, 64);
     
-    // Create gradient material
+    // Earth-like shader material
     const material = new THREE.ShaderMaterial({
         uniforms: {
-            time: { value: 0 },
-            color1: { value: new THREE.Color(0x667eea) },
-            color2: { value: new THREE.Color(0x764ba2) }
+            time: { value: 0 }
         },
         vertexShader: `
             varying vec2 vUv;
             varying vec3 vPosition;
+            varying vec3 vNormal;
             void main() {
                 vUv = uv;
                 vPosition = position;
+                vNormal = normalize(normalMatrix * normal);
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
             }
         `,
         fragmentShader: `
             uniform float time;
-            uniform vec3 color1;
-            uniform vec3 color2;
             varying vec2 vUv;
             varying vec3 vPosition;
+            varying vec3 vNormal;
+            
+            // Earth colors
+            vec3 oceanColor = vec3(0.0, 0.3, 0.6);
+            vec3 landColor = vec3(0.2, 0.5, 0.2);
+            vec3 desertColor = vec3(0.8, 0.7, 0.4);
+            vec3 iceColor = vec3(0.9, 0.95, 1.0);
+            vec3 cloudColor = vec3(1.0, 1.0, 1.0);
+            
+            // Simple noise function
+            float random(vec2 st) {
+                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+            }
+            
+            float noise(vec2 st) {
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                float a = random(i);
+                float b = random(i + vec2(1.0, 0.0));
+                float c = random(i + vec2(0.0, 1.0));
+                float d = random(i + vec2(1.0, 1.0));
+                vec2 u = f * f * (3.0 - 2.0 * f);
+                return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+            }
             
             void main() {
-                float noise = sin(vPosition.x * 10.0 + time) * 0.1 + 
-                             sin(vPosition.y * 15.0 + time * 1.5) * 0.1 + 
-                             sin(vPosition.z * 12.0 + time * 0.8) * 0.1;
+                // Create continent-like patterns
+                float scale = 5.0;
+                float landNoise = noise(vUv * scale + time * 0.01);
+                float detailNoise = noise(vUv * scale * 3.0) * 0.3;
+                float continents = landNoise + detailNoise;
                 
-                vec3 color = mix(color1, color2, vUv.y + noise);
-                float alpha = 0.8 + sin(vPosition.y * 5.0 + time) * 0.2;
-                gl_FragColor = vec4(color, alpha);
+                // Polar ice caps
+                float latitude = abs(vUv.y - 0.5) * 2.0;
+                float iceCap = smoothstep(0.85, 1.0, latitude);
+                
+                // Base color (ocean vs land)
+                vec3 baseColor = mix(oceanColor, landColor, smoothstep(0.45, 0.55, continents));
+                
+                // Add desert regions
+                float desertPattern = noise(vUv * scale * 2.0 + vec2(100.0, 50.0));
+                baseColor = mix(baseColor, desertColor, smoothstep(0.6, 0.7, continents) * smoothstep(0.4, 0.6, desertPattern));
+                
+                // Add ice caps
+                baseColor = mix(baseColor, iceColor, iceCap);
+                
+                // Clouds (animated)
+                float cloudPattern = noise(vUv * scale * 2.5 + time * 0.05);
+                cloudPattern *= noise(vUv * scale * 4.0 - time * 0.03);
+                float clouds = smoothstep(0.6, 0.7, cloudPattern);
+                baseColor = mix(baseColor, cloudColor, clouds * 0.3);
+                
+                // Atmospheric glow
+                float fresnel = pow(1.0 - max(0.0, dot(vNormal, vec3(0.0, 0.0, 1.0))), 2.0);
+                vec3 atmosphereColor = vec3(0.3, 0.6, 1.0);
+                vec3 finalColor = mix(baseColor, atmosphereColor, fresnel * 0.3);
+                
+                // Add slight brightness variation
+                float brightness = 0.8 + sin(vPosition.y * 3.0 + time * 0.5) * 0.2;
+                finalColor *= brightness;
+                
+                gl_FragColor = vec4(finalColor, 0.95);
             }
         `,
         transparent: true
@@ -88,13 +140,13 @@ function createGlobe() {
     globe = new THREE.Mesh(geometry, material);
     scene.add(globe);
 
-    // Add wireframe
-    const wireframeGeometry = new THREE.SphereGeometry(1.01, 32, 32);
+    // Add subtle wireframe for grid lines
+    const wireframeGeometry = new THREE.SphereGeometry(1.005, 32, 32);
     const wireframeMaterial = new THREE.MeshBasicMaterial({
-        color: 0x667eea,
+        color: 0x88ccff,
         wireframe: true,
         transparent: true,
-        opacity: 0.3
+        opacity: 0.1
     });
     const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
     scene.add(wireframe);
@@ -957,6 +1009,58 @@ function initProfileCard() {
     targetX = centerX;
     targetY = centerY;
     setVarsFromXY(centerX, centerY);
+}
+
+// Shuffle Text Animation for Name
+function initShuffleText() {
+    const titleLines = document.querySelectorAll('.title-line');
+    if (!titleLines.length) return;
+    
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+    const shuffleSpeed = 50; // ms per shuffle
+    const shuffleCycles = 8; // number of times to shuffle each character
+    
+    const shuffleText = (element) => {
+        const originalText = element.textContent;
+        const chars = originalText.split('');
+        let currentCycle = 0;
+        
+        const shuffle = () => {
+            if (currentCycle >= shuffleCycles) {
+                element.textContent = originalText;
+                return;
+            }
+            
+            const shuffled = chars.map((char, index) => {
+                if (char === ' ') return ' ';
+                if (currentCycle < shuffleCycles - 1) {
+                    return charset[Math.floor(Math.random() * charset.length)];
+                }
+                return originalText[index];
+            }).join('');
+            
+            element.textContent = shuffled;
+            currentCycle++;
+            
+            setTimeout(shuffle, shuffleSpeed);
+        };
+        
+        shuffle();
+    };
+    
+    // Trigger shuffle on page load
+    setTimeout(() => {
+        titleLines.forEach((line, index) => {
+            setTimeout(() => shuffleText(line), index * 200);
+        });
+    }, 500);
+    
+    // Trigger shuffle on hover
+    titleLines.forEach(line => {
+        line.addEventListener('mouseenter', () => {
+            shuffleText(line);
+        });
+    });
 }
 
 // Typing Animation
