@@ -71,6 +71,36 @@ body.light-mode .custom-cursor-trail {
     background: rgba(118, 75, 162, 0.5);
 }
 
+body.light-mode .chatbot-window {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .chatbot-header {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+body.light-mode .bot-message {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+}
+
+body.light-mode .form-group input,
+body.light-mode .form-group textarea {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+}
+
+body.light-mode .timeline-content h3,
+body.light-mode .timeline-content h4 {
+    color: #1a1a1a;
+}
+
+body.light-mode .menu-item-detail {
+    color: #666666;
+}
+
 /* Watercolor Background - Space Theme */
 .watercolor-bg {
     position: fixed;
@@ -705,6 +735,244 @@ body.light-mode .theme-toggle:hover {
 .skill-item i {
     color: #667eea;
     font-size: 1.2rem;
+}
+
+/* 3D Tilt Profile Card */
+.pc-card-wrapper {
+    --pointer-x: 50%;
+    --pointer-y: 50%;
+    --background-x: 50%;
+    --background-y: 50%;
+    --pointer-from-center: 0;
+    --pointer-from-top: 0.5;
+    --pointer-from-left: 0.5;
+    --rotate-x: 0deg;
+    --rotate-y: 0deg;
+    --icon: none;
+    --grain: none;
+    --inner-gradient: linear-gradient(145deg, rgba(96, 73, 110, 0.55) 0%, rgba(113, 196, 255, 0.27) 100%);
+    --behind-glow-color: rgba(125, 190, 255, 0.67);
+    --behind-glow-size: 50%;
+    
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 0.62;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.pc-behind {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        var(--behind-glow-size) var(--behind-glow-size) at var(--pointer-x) var(--pointer-y),
+        var(--behind-glow-color),
+        transparent
+    );
+    border-radius: 30px;
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.pc-card-shell.active .pc-behind {
+    opacity: 1;
+}
+
+.pc-card-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+    transition: transform 0.15s ease-out;
+    z-index: 1;
+}
+
+.pc-card-shell.entering {
+    transition: transform 0.18s ease-out;
+}
+
+.pc-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 40, 0.6);
+    border-radius: 30px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .pc-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.pc-inside {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.pc-shine {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        farthest-corner circle at var(--pointer-x) var(--pointer-y),
+        rgba(255, 255, 255, 0.15) 10%,
+        rgba(255, 255, 255, 0.05) 20%,
+        transparent 90%
+    );
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pc-card-shell.active .pc-shine {
+    opacity: 1;
+}
+
+.pc-glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        farthest-corner circle at var(--pointer-x) var(--pointer-y),
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.3) 20%,
+        transparent 80%
+    );
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.pc-card-shell.active .pc-glare {
+    opacity: calc(var(--pointer-from-center) * 0.5);
+}
+
+.pc-content {
+    position: relative;
+    z-index: 3;
+}
+
+.pc-avatar-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.pc-avatar-content .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pc-user-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.pc-user-details {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.pc-mini-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.pc-mini-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pc-user-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.pc-handle {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.pc-status {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.pc-contact-btn {
+    background: rgba(102, 126, 234, 0.9);
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pc-contact-btn:hover {
+    background: rgba(102, 126, 234, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.pc-details {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+}
+
+.pc-details h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+body.light-mode .pc-details h3 {
+    color: #1a1a1a;
+}
+
+.pc-details p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+body.light-mode .pc-details p {
+    color: #666666;
 }
 
 .profile-card {

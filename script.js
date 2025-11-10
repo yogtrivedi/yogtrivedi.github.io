@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initInfiniteMenu();
     initThemeToggle();
     initHeroSections();
+    initProfileCard();
 });
 
 // 3D Globe Implementation
@@ -851,8 +852,8 @@ function initHeroSections() {
     const heroSections = document.querySelectorAll('.hero-section');
     
     const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver((entries) => {
@@ -866,6 +867,95 @@ function initHeroSections() {
     heroSections.forEach(section => {
         observer.observe(section);
     });
+}
+
+// 3D Tilt Profile Card
+function initProfileCard() {
+    const wrapper = document.getElementById('profileCard');
+    if (!wrapper) return;
+    
+    const shell = wrapper.querySelector('.pc-card-shell');
+    if (!shell) return;
+    
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let rafId = null;
+    
+    const clamp = (v, min = 0, max = 100) => Math.min(Math.max(v, min), max);
+    const round = (v, precision = 3) => parseFloat(v.toFixed(precision));
+    
+    const setVarsFromXY = (x, y) => {
+        const width = shell.clientWidth || 1;
+        const height = shell.clientHeight || 1;
+        const percentX = clamp((100 / width) * x);
+        const percentY = clamp((100 / height) * y);
+        const centerX = percentX - 50;
+        const centerY = percentY - 50;
+        
+        wrapper.style.setProperty('--pointer-x', `${percentX}%`);
+        wrapper.style.setProperty('--pointer-y', `${percentY}%`);
+        wrapper.style.setProperty('--pointer-from-center', clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1));
+        wrapper.style.setProperty('--rotate-x', `${round(-(centerY / 4))}deg`);
+        wrapper.style.setProperty('--rotate-y', `${round(centerX / 5)}deg`);
+    };
+    
+    const animate = () => {
+        const k = 0.14;
+        currentX += (targetX - currentX) * k;
+        currentY += (targetY - currentY) * k;
+        setVarsFromXY(currentX, currentY);
+        
+        if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+            rafId = requestAnimationFrame(animate);
+        } else {
+            rafId = null;
+        }
+    };
+    
+    const handlePointerMove = (e) => {
+        const rect = shell.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+        if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+        }
+    };
+    
+    const handlePointerEnter = (e) => {
+        shell.classList.add('active');
+        const rect = shell.getBoundingClientRect();
+        currentX = e.clientX - rect.left;
+        currentY = e.clientY - rect.top;
+        targetX = currentX;
+        targetY = currentY;
+        setVarsFromXY(currentX, currentY);
+    };
+    
+    const handlePointerLeave = () => {
+        targetX = shell.clientWidth / 2;
+        targetY = shell.clientHeight / 2;
+        if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+        }
+        setTimeout(() => {
+            shell.classList.remove('active');
+        }, 300);
+    };
+    
+    shell.addEventListener('pointerenter', handlePointerEnter);
+    shell.addEventListener('pointermove', handlePointerMove);
+    shell.addEventListener('pointerleave', handlePointerLeave);
+    
+    // Initialize at center
+    const centerX = shell.clientWidth / 2;
+    const centerY = shell.clientHeight / 2;
+    currentX = centerX;
+    currentY = centerY;
+    targetX = centerX;
+    targetY = centerY;
+    setVarsFromXY(centerX, centerY);
 }
 
 // Add parallax effect to background
