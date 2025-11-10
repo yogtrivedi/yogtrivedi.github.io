@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initFormHandlers();
     initInteractiveStars();
+    initCustomCursor();
 });
 
 // 3D Globe Implementation
@@ -612,6 +613,64 @@ function navigateToExperience(experience) {
             }, 500);
             break;
     }
+}
+
+// Custom Cursor functionality
+function initCustomCursor() {
+    const cursor = document.getElementById('customCursor');
+    const cursorTrail = document.getElementById('cursorTrail');
+    
+    if (!cursor || !cursorTrail) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let trailX = 0;
+    let trailY = 0;
+    
+    // Update cursor position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+    
+    // Smooth trail animation
+    function animateTrail() {
+        trailX += (mouseX - trailX) * 0.15;
+        trailY += (mouseY - trailY) * 0.15;
+        
+        cursorTrail.style.left = trailX + 'px';
+        cursorTrail.style.top = trailY + 'px';
+        
+        requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+    
+    // Add hover effects for interactive elements
+    const hoverElements = document.querySelectorAll('a, button, .star-item, .project-card, .skill-item, .contact-item, .nav-link, .tab-btn');
+    
+    hoverElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovering');
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovering');
+        });
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+        cursorTrail.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursorTrail.style.opacity = '1';
+    });
 }
 
 // Add parallax effect to background
