@@ -677,7 +677,8 @@ body.light-mode .subtitle {
     justify-content: center;
     opacity: 0;
     transform: translateY(100px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    position: relative;
 }
 
 .hero-section.active {
@@ -696,7 +697,7 @@ body.light-mode .subtitle {
     background-clip: text;
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
 }
 
 .hero-section.active .hero-title {
@@ -707,16 +708,18 @@ body.light-mode .subtitle {
 .hero-section .about-content,
 .hero-section .projects-grid,
 .hero-section .contact-content,
-.hero-section .infinite-menu-container {
+.hero-section .infinite-menu-container,
+.hero-section .resume-content {
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+    transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
 }
 
 .hero-section.active .about-content,
 .hero-section.active .projects-grid,
 .hero-section.active .contact-content,
-.hero-section.active .infinite-menu-container {
+.hero-section.active .infinite-menu-container,
+.hero-section.active .resume-content {
     opacity: 1;
     transform: translateY(0);
 }

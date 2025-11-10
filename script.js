@@ -777,6 +777,16 @@ function initInfiniteMenu() {
     // Menu items data
     const menuItems = [
         {
+            icon: '🍑',
+            title: 'Passionfruit 🥉',
+            description: '3rd place at BDPA Indianapolis hackathon. AI-driven interview coaching with real-time face tracking analytics and Gemini-powered resume critique.',
+            details: [
+                { icon: 'fa-trophy', text: '3rd Place Winner' },
+                { icon: 'fa-code', text: 'Next.js, TensorFlow.js' },
+                { icon: 'fa-brain', text: 'Gemini AI, OpenAI' }
+            ]
+        },
+        {
             icon: '💼',
             title: 'Data Mine Intern',
             description: 'Collaborated with Corteva Agriscience to build a chatbot for training new formula scientists. Trained in R and Python for machine learning applications.',
@@ -789,7 +799,7 @@ function initInfiniteMenu() {
         {
             icon: '🔬',
             title: 'Undergraduate Researcher',
-            description: 'Developing a Python-based predictive model to identify and map potential disease occurrences within human cells under Professor Rakesh Shiradkar.',
+            description: 'Developing a Python-based predictive model to identify and map potential disease occurrences within human prostate cells under Professor Rakesh Shiradkar.',
             details: [
                 { icon: 'fa-university', text: 'Indiana University' },
                 { icon: 'fa-calendar', text: 'August 2025 - Present' },
@@ -807,16 +817,6 @@ function initInfiniteMenu() {
             ]
         },
         {
-            icon: '🧬',
-            title: 'Disease Prediction Model',
-            description: 'Python-based predictive model to identify and map potential disease occurrences within human cells.',
-            details: [
-                { icon: 'fa-brain', text: 'Research Project' },
-                { icon: 'fa-code', text: 'Python, ML' },
-                { icon: 'fa-chart-line', text: 'Predictive Modeling' }
-            ]
-        },
-        {
             icon: '🥋',
             title: 'Karate Instructor',
             description: 'Served as an Assistant Instructor for Master Kelly in Tang Soo Do, supporting students\' training and skill development.',
@@ -824,16 +824,6 @@ function initInfiniteMenu() {
                 { icon: 'fa-trophy', text: 'C.S Kim Karate' },
                 { icon: 'fa-calendar', text: '2015 - Present' },
                 { icon: 'fa-black-belt', text: 'First Degree Black Belt' }
-            ]
-        },
-        {
-            icon: '🤖',
-            title: 'Corteva Chatbot',
-            description: 'AI chatbot for training new formula scientists at Corteva Agriscience using machine learning.',
-            details: [
-                { icon: 'fa-robot', text: 'AI Project' },
-                { icon: 'fa-code', text: 'Python, R' },
-                { icon: 'fa-graduation-cap', text: 'Training System' }
             ]
         }
     ];
@@ -942,16 +932,22 @@ function initThemeToggle() {
 // Apple-style Hero Sections Animation
 function initHeroSections() {
     const heroSections = document.querySelectorAll('.hero-section');
+    let activatedSections = new Set();
     
     const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.3,
+        rootMargin: '0px 0px -20% 0px'
     };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !activatedSections.has(entry.target)) {
+                // Add active class immediately
                 entry.target.classList.add('active');
+                activatedSections.add(entry.target);
+                
+                // Unobserve this section once activated (one-time trigger)
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
