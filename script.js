@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveStars();
     initCustomCursor();
     initInfiniteMenu();
+    initThemeToggle();
+    initHeroSections();
 });
 
 // 3D Globe Implementation
@@ -809,6 +811,60 @@ function initInfiniteMenu() {
                 card.style.transform = '';
             }, 2000);
         }
+    });
+}
+
+// Theme Toggle functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            
+            // Update icon
+            if (body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+}
+
+// Apple-style Hero Sections Animation
+function initHeroSections() {
+    const heroSections = document.querySelectorAll('.hero-section');
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+    
+    heroSections.forEach(section => {
+        observer.observe(section);
     });
 }
 

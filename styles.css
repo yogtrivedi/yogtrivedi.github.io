@@ -16,6 +16,59 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     cursor: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode */
+body.light-mode {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+body.light-mode .watercolor-bg {
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.08) 0%, transparent 50%),
+        #ffffff;
+}
+
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .nav-link {
+    color: #1a1a1a;
+}
+
+body.light-mode .section-title,
+body.light-mode .main-title {
+    color: #1a1a1a;
+}
+
+body.light-mode .subtitle,
+body.light-mode .about-description,
+body.light-mode .timeline-date,
+body.light-mode .menu-item-description {
+    color: #666666;
+}
+
+body.light-mode .project-card,
+body.light-mode .menu-item-card,
+body.light-mode .profile-card,
+body.light-mode .contact-form,
+body.light-mode .education-item {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .custom-cursor {
+    background: rgba(102, 126, 234, 0.7);
+}
+
+body.light-mode .custom-cursor-trail {
+    background: rgba(118, 75, 162, 0.5);
 }
 
 /* Watercolor Background - Space Theme */
@@ -215,6 +268,36 @@ body {
 .nav-menu {
     display: flex;
     gap: 2rem;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #ffffff;
+    margin-left: 1rem;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(20deg) scale(1.1);
+}
+
+body.light-mode .theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+}
+
+body.light-mode .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
@@ -512,6 +595,58 @@ body {
     padding: 5rem 0;
     position: relative;
     z-index: 1;
+}
+
+/* Apple-Style Hero Sections */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.hero-section.active .hero-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-section .about-content,
+.hero-section .projects-grid,
+.hero-section .contact-content,
+.hero-section .infinite-menu-container {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+
+.hero-section.active .about-content,
+.hero-section.active .projects-grid,
+.hero-section.active .contact-content,
+.hero-section.active .infinite-menu-container {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container {
