@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandlers();
     initInteractiveStars();
     initCustomCursor();
+    initInfiniteMenu();
 });
 
 // 3D Globe Implementation
@@ -670,6 +671,144 @@ function initCustomCursor() {
     document.addEventListener('mouseenter', () => {
         cursor.style.opacity = '1';
         cursorTrail.style.opacity = '1';
+    });
+}
+
+// Infinite Menu functionality
+function initInfiniteMenu() {
+    const track = document.getElementById('infiniteMenuTrack');
+    if (!track) return;
+    
+    // Menu items data
+    const menuItems = [
+        {
+            icon: '💼',
+            title: 'Data Mine Intern',
+            description: 'Collaborated with Corteva Agriscience to build a chatbot for training new formula scientists. Trained in R and Python for machine learning applications.',
+            details: [
+                { icon: 'fa-building', text: 'The Data Mine, Purdue' },
+                { icon: 'fa-calendar', text: 'August 2025 - Present' },
+                { icon: 'fa-code', text: 'Python, R, ML' }
+            ]
+        },
+        {
+            icon: '🔬',
+            title: 'Undergraduate Researcher',
+            description: 'Developing a Python-based predictive model to identify and map potential disease occurrences within human cells under Professor Rakesh Shiradkar.',
+            details: [
+                { icon: 'fa-university', text: 'Indiana University' },
+                { icon: 'fa-calendar', text: 'August 2025 - Present' },
+                { icon: 'fa-flask', text: 'Python, Data Science' }
+            ]
+        },
+        {
+            icon: '📱',
+            title: 'FriendFusion',
+            description: 'Fully functional social media app with account creation, friend management, commenting, and post creation features.',
+            details: [
+                { icon: 'fa-laptop-code', text: 'Personal Project' },
+                { icon: 'fa-code', text: 'Java, JFrame' },
+                { icon: 'fa-database', text: 'Database Integration' }
+            ]
+        },
+        {
+            icon: '🧬',
+            title: 'Disease Prediction Model',
+            description: 'Python-based predictive model to identify and map potential disease occurrences within human cells.',
+            details: [
+                { icon: 'fa-brain', text: 'Research Project' },
+                { icon: 'fa-code', text: 'Python, ML' },
+                { icon: 'fa-chart-line', text: 'Predictive Modeling' }
+            ]
+        },
+        {
+            icon: '🥋',
+            title: 'Karate Instructor',
+            description: 'Served as an Assistant Instructor for Master Kelly in Tang Soo Do, supporting students\' training and skill development.',
+            details: [
+                { icon: 'fa-trophy', text: 'C.S Kim Karate' },
+                { icon: 'fa-calendar', text: '2015 - Present' },
+                { icon: 'fa-black-belt', text: 'First Degree Black Belt' }
+            ]
+        },
+        {
+            icon: '🤖',
+            title: 'Corteva Chatbot',
+            description: 'AI chatbot for training new formula scientists at Corteva Agriscience using machine learning.',
+            details: [
+                { icon: 'fa-robot', text: 'AI Project' },
+                { icon: 'fa-code', text: 'Python, R' },
+                { icon: 'fa-graduation-cap', text: 'Training System' }
+            ]
+        }
+    ];
+    
+    // Generate menu items (duplicate for infinite effect)
+    const itemsHTML = menuItems.map(item => `
+        <div class="menu-item-card">
+            <div class="menu-item-image">${item.icon}</div>
+            <div class="menu-item-content">
+                <h3 class="menu-item-title">${item.title}</h3>
+                <p class="menu-item-description">${item.description}</p>
+                <div class="menu-item-details">
+                    ${item.details.map(detail => `
+                        <div class="menu-item-detail">
+                            <i class="fas ${detail.icon}"></i>
+                            <span>${detail.text}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // Duplicate items for seamless infinite scroll
+    track.innerHTML = itemsHTML + itemsHTML;
+    
+    // Navigation arrows
+    const prevBtn = document.getElementById('menuPrev');
+    const nextBtn = document.getElementById('menuNext');
+    let currentOffset = 0;
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const cardWidth = 350 + 32; // card width + gap
+            currentOffset += cardWidth;
+            track.style.animation = 'none';
+            track.style.transform = `translateX(${currentOffset}px)`;
+            
+            setTimeout(() => {
+                track.style.animation = '';
+            }, 100);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const cardWidth = 350 + 32; // card width + gap
+            currentOffset -= cardWidth;
+            track.style.animation = 'none';
+            track.style.transform = `translateX(${currentOffset}px)`;
+            
+            setTimeout(() => {
+                track.style.animation = '';
+            }, 100);
+        });
+    }
+    
+    // Click on card to expand
+    track.addEventListener('click', (e) => {
+        const card = e.target.closest('.menu-item-card');
+        if (card) {
+            // Pause animation and scale card
+            track.style.animationPlayState = 'paused';
+            card.style.transform = 'translateY(-10px) scale(1.1)';
+            
+            setTimeout(() => {
+                track.style.animationPlayState = 'running';
+                card.style.transform = '';
+            }, 2000);
+        }
     });
 }
 
