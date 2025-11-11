@@ -151,6 +151,57 @@ function createGlobe() {
     });
     const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
     scene.add(wireframe);
+    
+    // Add electric glow around Earth
+    const glowGeometry = new THREE.SphereGeometry(1.15, 32, 32);
+    const glowMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+            time: { value: 0 },
+            glowColor: { value: new THREE.Color(0x4c3a6e) }
+        },
+        vertexShader: `
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            void main() {
+                vNormal = normalize(normalMatrix * normal);
+                vPosition = position;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+        fragmentShader: `
+            uniform float time;
+            uniform vec3 glowColor;
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+            
+            void main() {
+                // Electric glow effect
+                float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+                
+                // Add animated electricity
+                float electric = sin(vPosition.x * 10.0 + time * 3.0) * 
+                                sin(vPosition.y * 10.0 + time * 2.0) * 
+                                sin(vPosition.z * 10.0 + time * 4.0);
+                electric = smoothstep(0.5, 0.8, electric);
+                
+                // Combine glow with electric arcs
+                float finalIntensity = intensity + electric * 0.3;
+                
+                vec3 glow = glowColor * finalIntensity;
+                
+                gl_FragColor = vec4(glow, finalIntensity * 0.6);
+            }
+        `,
+        transparent: true,
+        side: THREE.BackSide,
+        blending: THREE.AdditiveBlending
+    });
+    
+    const glowMesh = new THREE.Mesh(glowGeometry, glowMaterial);
+    scene.add(glowMesh);
+    
+    // Store reference for animation
+    globe.glowMesh = glowMesh;
 }
 
 function createStars() {
@@ -246,6 +297,13 @@ function animate() {
         globe.rotation.y += 0.005;
         globe.rotation.x += 0.002;
         globe.material.uniforms.time.value = time;
+        
+        // Animate electric glow
+        if (globe.glowMesh) {
+            globe.glowMesh.rotation.y = globe.rotation.y;
+            globe.glowMesh.rotation.x = globe.rotation.x;
+            globe.glowMesh.material.uniforms.time.value = time;
+        }
     }
 
     // Rotate stars
