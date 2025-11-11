@@ -1,0 +1,247 @@
+/* Hidden Game Styles */
+.game-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.game-overlay.active {
+    display: flex;
+    opacity: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background: linear-gradient(180deg, #000428 0%, #004e92 100%);
+    border: 3px solid #667eea;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+}
+
+.game-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.game-hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    z-index: 10001;
+}
+
+.game-stat {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid #667eea;
+}
+
+.game-stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.game-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.game-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 0, 0, 0.7);
+    border: 2px solid #ff0000;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 10002;
+}
+
+.game-close:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+}
+
+.game-start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.game-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: #667eea;
+    text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    margin-bottom: 2rem;
+    animation: titlePulse 2s infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.game-instructions {
+    color: white;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 2rem;
+}
+
+.game-instructions p {
+    margin: 10px 0;
+}
+
+.game-start-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.game-start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.game-over-screen.active {
+    display: flex;
+}
+
+.game-over-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    color: #ff0000;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    margin-bottom: 1rem;
+}
+
+.game-final-score {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.unlocked-skills {
+    background: rgba(102, 126, 234, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.unlocked-skills h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.skill-tag {
+    display: inline-block;
+    background: rgba(102, 126, 234, 0.3);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 0.9rem;
+}
+
+.konami-hint {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(102, 126, 234, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    z-index: 9999;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.konami-hint.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.konami-hint.hide {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@media (max-width: 900px) {
+    .game-container {
+        width: 90vw;
+        height: 70vh;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .game-over-title {
+        font-size: 2.5rem;
+    }
+}

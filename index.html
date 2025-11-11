@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yog Trivedi - Computer Science Student & Developer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="game.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,6 +13,50 @@
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="customCursor"></div>
     <div class="custom-cursor-trail" id="cursorTrail"></div>
+    
+    <!-- Hidden Game (Konami Code) -->
+    <div class="game-overlay" id="gameOverlay">
+        <div class="game-container">
+            <div class="game-hud">
+                <div class="game-stat">
+                    <div class="game-stat-label">SCORE</div>
+                    <div class="game-stat-value" id="gameScore">0</div>
+                </div>
+                <div class="game-stat">
+                    <div class="game-stat-label">SKILLS UNLOCKED</div>
+                    <div class="game-stat-value" id="gameSkills">0</div>
+                </div>
+                <div class="game-stat">
+                    <div class="game-stat-label">LIVES</div>
+                    <div class="game-stat-value" id="gameLives">3</div>
+                </div>
+            </div>
+            <button class="game-close" id="gameClose">×</button>
+            <canvas class="game-canvas" id="gameCanvas"></canvas>
+            
+            <div class="game-start-screen" id="gameStartScreen">
+                <h1 class="game-title">🚀 DEFEND EARTH 🌍</h1>
+                <div class="game-instructions">
+                    <p><strong>MISSION:</strong> Protect Earth from asteroids!</p>
+                    <p>⬅️ ➡️ Arrow Keys to Move | SPACE to Shoot</p>
+                    <p>Destroy asteroids to unlock Yog's skills!</p>
+                </div>
+                <button class="game-start-btn" id="gameStartBtn">START MISSION</button>
+            </div>
+            
+            <div class="game-over-screen" id="gameOverScreen">
+                <h1 class="game-over-title">MISSION COMPLETE!</h1>
+                <div class="game-final-score">Final Score: <span id="finalScore">0</span></div>
+                <div class="unlocked-skills" id="unlockedSkillsDisplay"></div>
+                <button class="game-start-btn" id="gameRestartBtn">PLAY AGAIN</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Konami Code Hint -->
+    <div class="konami-hint" id="konamiHint">
+        🎮 Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
+    </div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -383,6 +428,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="game.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
