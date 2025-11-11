@@ -10,6 +10,16 @@
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
+    cursor: default !important;
+}
+
+.game-overlay * {
+    cursor: default !important;
+}
+
+.game-overlay button,
+.game-overlay .game-close {
+    cursor: pointer !important;
 }
 
 .game-overlay.active {
@@ -138,13 +148,23 @@
     font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s ease;
     box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { 
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    50% { 
+        box-shadow: 0 8px 40px rgba(102, 126, 234, 0.8);
+    }
 }
 
 .game-start-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
 }
 

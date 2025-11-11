@@ -381,4 +381,10 @@ function gameLoop() {
 // Initialize game
 document.addEventListener('DOMContentLoaded', function() {
     initKonamiCode();
+    
+    // Add click handler for game launch button
+    const gameLaunchBtn = document.getElementById('gameLaunchBtn');
+    if (gameLaunchBtn) {
+        gameLaunchBtn.addEventListener('click', activateGame);
+    }
 });
