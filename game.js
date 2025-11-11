@@ -387,4 +387,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (gameLaunchBtn) {
         gameLaunchBtn.addEventListener('click', activateGame);
     }
+    
+    // Add click handler for nav link
+    const gameNavLink = document.getElementById('gameNavLink');
+    if (gameNavLink) {
+        gameNavLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            activateGame();
+        });
+    }
 });

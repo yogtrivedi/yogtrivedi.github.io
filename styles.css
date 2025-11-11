@@ -487,6 +487,36 @@ body.light-mode .theme-toggle:hover {
     width: 100%;
 }
 
+.game-nav-link {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px;
+    animation: navGamePulse 2s infinite;
+    font-weight: 600;
+}
+
+.game-nav-link i {
+    margin-right: 0.3rem;
+}
+
+@keyframes navGamePulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    }
+}
+
+.game-nav-link:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #764ba2, #667eea);
+}
+
+.game-nav-link::after {
+    display: none !important;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
