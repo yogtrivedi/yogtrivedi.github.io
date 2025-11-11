@@ -960,6 +960,7 @@ function initInfiniteMenu() {
 function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
+    const colorThemeToggle = document.getElementById('colorThemeToggle');
     const body = document.body;
     
     // Check for saved theme preference
@@ -970,6 +971,14 @@ function initThemeToggle() {
         themeIcon.classList.add('fa-moon');
     }
     
+    // Check for saved color theme
+    const savedColorTheme = localStorage.getItem('colorTheme');
+    if (savedColorTheme === 'crimson') {
+        body.classList.add('crimson-theme');
+        updateGlobeGlow('crimson');
+    }
+    
+    // Light/Dark toggle
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('light-mode');
@@ -986,6 +995,32 @@ function initThemeToggle() {
             }
         });
     }
+    
+    // Color theme toggle (Purple <-> Crimson)
+    if (colorThemeToggle) {
+        colorThemeToggle.addEventListener('click', () => {
+            body.classList.toggle('crimson-theme');
+            
+            if (body.classList.contains('crimson-theme')) {
+                localStorage.setItem('colorTheme', 'crimson');
+                updateGlobeGlow('crimson');
+            } else {
+                localStorage.setItem('colorTheme', 'purple');
+                updateGlobeGlow('purple');
+            }
+        });
+    }
+}
+
+// Update Earth's electric glow color
+function updateGlobeGlow(theme) {
+    if (!globe || !globe.glowMesh) return;
+    
+    const color = theme === 'crimson' 
+        ? new THREE.Color(0xDC143C) 
+        : new THREE.Color(0x4c3a6e);
+    
+    globe.glowMesh.material.uniforms.glowColor.value = color;
 }
 
 // Apple-style Hero Sections Animation

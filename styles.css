@@ -433,7 +433,8 @@ body.light-mode .menu-item-detail {
     gap: 2rem;
 }
 
-.theme-toggle {
+.theme-toggle,
+.color-theme-toggle {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
@@ -445,22 +446,30 @@ body.light-mode .menu-item-detail {
     cursor: pointer;
     transition: all 0.3s ease;
     color: #ffffff;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.color-theme-toggle:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: rotate(20deg) scale(1.1);
 }
 
-body.light-mode .theme-toggle {
+body.light-mode .theme-toggle,
+body.light-mode .color-theme-toggle {
     background: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.1);
     color: #1a1a1a;
 }
 
-body.light-mode .theme-toggle:hover {
+body.light-mode .theme-toggle:hover,
+body.light-mode .color-theme-toggle:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+body.crimson-theme .color-theme-toggle {
+    background: linear-gradient(45deg, #8B0000, #DC143C);
+    border-color: #DC143C;
 }
 
 .nav-link {
