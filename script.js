@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProfileCard();
     initTypingAnimation();
     initShuffleText();
+    initWeatherParticles();
 });
 
 // 3D Globe Implementation
@@ -1158,6 +1159,85 @@ function initTypingAnimation() {
     setTimeout(() => {
         type();
     }, initialDelay);
+}
+
+// Weather Particles System (Snow/Rain)
+function initWeatherParticles() {
+    const container = document.getElementById('particlesContainer');
+    const toggleBtn = document.getElementById('weatherToggle');
+    if (!container || !toggleBtn) return;
+    
+    let weatherMode = 'off'; // 'off', 'snow', 'rain'
+    let particlesArray = [];
+    
+    const weatherModes = ['off', 'snow', 'rain'];
+    const weatherIcons = {
+        'off': 'fa-snowflake',
+        'snow': 'fa-cloud-rain',
+        'rain': 'fa-times'
+    };
+    
+    function createParticles(mode) {
+        // Clear existing particles
+        container.innerHTML = '';
+        particlesArray = [];
+        
+        if (mode === 'off') return;
+        
+        const particleCount = mode === 'snow' ? 100 : 150;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = `particle ${mode}`;
+            
+            // Random starting position
+            particle.style.left = Math.random() * 100 + '%';
+            
+            // Random animation duration
+            const duration = mode === 'snow' 
+                ? 10 + Math.random() * 20 
+                : 0.5 + Math.random() * 1;
+            particle.style.animationDuration = duration + 's';
+            
+            // Random delay
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            
+            // Random size for snow
+            if (mode === 'snow') {
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+            }
+            
+            container.appendChild(particle);
+            particlesArray.push(particle);
+        }
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+        const currentIndex = weatherModes.indexOf(weatherMode);
+        const nextIndex = (currentIndex + 1) % weatherModes.length;
+        weatherMode = weatherModes[nextIndex];
+        
+        // Update icon
+        const icon = toggleBtn.querySelector('i');
+        icon.className = `fas ${weatherIcons[weatherMode]}`;
+        
+        // Create particles
+        createParticles(weatherMode);
+        
+        // Save preference
+        localStorage.setItem('weatherMode', weatherMode);
+    });
+    
+    // Load saved preference
+    const savedWeather = localStorage.getItem('weatherMode');
+    if (savedWeather && weatherModes.includes(savedWeather)) {
+        weatherMode = savedWeather;
+        const icon = toggleBtn.querySelector('i');
+        icon.className = `fas ${weatherIcons[weatherMode]}`;
+        createParticles(weatherMode);
+    }
 }
 
 // Add parallax effect to background

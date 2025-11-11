@@ -71,6 +71,101 @@ body.light-mode .custom-cursor-trail {
     background: rgba(118, 75, 162, 0.5);
 }
 
+/* Particle System - Snow/Rain */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.particle.snow {
+    width: 4px;
+    height: 4px;
+    animation: snowfall linear infinite;
+}
+
+.particle.rain {
+    width: 2px;
+    height: 15px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, rgba(174, 194, 224, 0.8), rgba(174, 194, 224, 0.2));
+    animation: rainfall linear infinite;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10px) translateX(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+@keyframes rainfall {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+.weather-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 2rem;
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 126, 234, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.weather-toggle:hover {
+    background: rgba(102, 126, 234, 0.6);
+    transform: scale(1.1);
+}
+
+body.light-mode .weather-toggle {
+    background: rgba(102, 126, 234, 0.4);
+    border-color: rgba(102, 126, 234, 0.6);
+}
+
 body.light-mode .chatbot-window {
     background: rgba(255, 255, 255, 0.95);
     border-color: rgba(0, 0, 0, 0.1);
