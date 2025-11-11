@@ -170,9 +170,9 @@ body.light-mode .weather-toggle {
     position: fixed;
     bottom: 170px;
     right: 2rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     backdrop-filter: blur(10px);
-    border: 2px solid #667eea;
+    border: 2px solid #4c3a6e;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -200,7 +200,7 @@ body.light-mode .weather-toggle {
 }
 
 .game-launch-btn:hover {
-    background: linear-gradient(45deg, #764ba2, #667eea);
+    background: linear-gradient(45deg, #5a3472, #4c3a6e);
     transform: scale(1.2) rotate(15deg);
 }
 
@@ -210,7 +210,7 @@ body.light-mode .chatbot-window {
 }
 
 body.light-mode .chatbot-header {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
 }
 
 body.light-mode .bot-message {
@@ -330,7 +330,7 @@ body.light-mode .menu-item-detail {
 /* Electric Border Effect */
 .electric-border {
     position: relative;
-    --electric-border-color: #667eea;
+    --electric-border-color: #4c3a6e;
     --eb-border-width: 2px;
 }
 
@@ -422,7 +422,7 @@ body.light-mode .menu-item-detail {
 .nav-logo .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -478,7 +478,7 @@ body.light-mode .theme-toggle:hover {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     transition: width 0.3s ease;
 }
 
@@ -488,7 +488,7 @@ body.light-mode .theme-toggle:hover {
 }
 
 .game-nav-link {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     padding: 0.5rem 1rem !important;
     border-radius: 20px;
     animation: navGamePulse 2s infinite;
@@ -510,7 +510,7 @@ body.light-mode .theme-toggle:hover {
 
 .game-nav-link:hover {
     transform: scale(1.05);
-    background: linear-gradient(45deg, #764ba2, #667eea);
+    background: linear-gradient(45deg, #5a3472, #4c3a6e);
 }
 
 .game-nav-link::after {
@@ -594,12 +594,12 @@ body.light-mode .theme-toggle:hover {
 .star-shape {
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 20px rgba(76, 58, 110, 0.7);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -641,7 +641,7 @@ body.light-mode .theme-toggle:hover {
 
 .star-item:hover .star-shape {
     transform: scale(1.2);
-    box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+    box-shadow: 0 0 30px rgba(76, 58, 110, 0.9);
 }
 
 .star-item:hover .star-shape::before {
@@ -711,7 +711,7 @@ body.light-mode .theme-toggle:hover {
 
 .title-line {
     display: block;
-    background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472, #f093fb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -796,7 +796,7 @@ body.light-mode .subtitle {
 .scroll-arrow {
     width: 2px;
     height: 30px;
-    background: linear-gradient(to bottom, #667eea, transparent);
+    background: linear-gradient(to bottom, #4c3a6e, transparent);
     position: relative;
     animation: scrollBounce 2s infinite;
 }
@@ -808,8 +808,8 @@ body.light-mode .subtitle {
     left: -3px;
     width: 8px;
     height: 8px;
-    border-right: 2px solid #667eea;
-    border-bottom: 2px solid #667eea;
+    border-right: 2px solid #4c3a6e;
+    border-bottom: 2px solid #4c3a6e;
     transform: rotate(45deg);
 }
 
@@ -854,7 +854,7 @@ body.light-mode .subtitle {
     font-weight: 700;
     text-align: center;
     margin-bottom: 3rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -898,7 +898,7 @@ body.light-mode .subtitle {
     font-weight: 700;
     text-align: center;
     margin-bottom: 3rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -941,7 +941,7 @@ body.light-mode .subtitle {
 }
 
 .skill-item i {
-    color: #667eea;
+    color: #5a3472;
     font-size: 1.2rem;
 }
 
@@ -1196,7 +1196,7 @@ body.light-mode .pc-details p {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     margin: 0 auto 1rem;
     position: relative;
     overflow: hidden;
@@ -1293,7 +1293,7 @@ body.light-mode .pc-details p {
     width: 100%;
     height: 200px;
     border-radius: 15px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #4c3a6e, #5a3472);
     margin-bottom: 1.5rem;
     overflow: hidden;
     position: relative;
@@ -1316,7 +1316,7 @@ body.light-mode .pc-details p {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1344,7 +1344,7 @@ body.light-mode .pc-details p {
 }
 
 .menu-item-detail i {
-    color: #667eea;
+    color: #5a3472;
 }
 
 @keyframes infiniteScroll {
@@ -1413,7 +1413,7 @@ body.light-mode .pc-details p {
 }
 
 .tab-btn.active {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     color: #ffffff;
 }
 
@@ -1437,7 +1437,7 @@ body.light-mode .pc-details p {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, #667eea, #764ba2);
+    background: linear-gradient(to bottom, #4c3a6e, #5a3472);
 }
 
 .timeline-item {
@@ -1452,7 +1452,7 @@ body.light-mode .pc-details p {
     top: 0.5rem;
     width: 12px;
     height: 12px;
-    background: #667eea;
+    background: #4c3a6e;
     border-radius: 50%;
     border: 3px solid #0a0a0a;
 }
@@ -1463,7 +1463,7 @@ body.light-mode .pc-details p {
 }
 
 .timeline-content h4 {
-    color: #667eea;
+    color: #4c3a6e;
     margin-bottom: 0.5rem;
 }
 
@@ -1481,7 +1481,7 @@ body.light-mode .pc-details p {
     background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
     border-radius: 15px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #4c3a6e;
 }
 
 .skills-categories {
@@ -1491,7 +1491,7 @@ body.light-mode .pc-details p {
 
 .skill-category h3 {
     margin-bottom: 1rem;
-    color: #667eea;
+    color: #4c3a6e;
 }
 
 .skill-tags {
@@ -1502,7 +1502,7 @@ body.light-mode .pc-details p {
 
 .skill-tag {
     background: rgba(102, 126, 234, 0.2);
-    color: #667eea;
+    color: #4c3a6e;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -1531,7 +1531,7 @@ body.light-mode .pc-details p {
 
 .project-image {
     height: 200px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     position: relative;
     display: flex;
     align-items: center;
@@ -1570,7 +1570,7 @@ body.light-mode .pc-details p {
 
 .project-tech span {
     background: rgba(102, 126, 234, 0.2);
-    color: #667eea;
+    color: #4c3a6e;
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -1605,7 +1605,7 @@ body.light-mode .pc-details p {
 }
 
 .contact-item i {
-    color: #667eea;
+    color: #5a3472;
     font-size: 1.2rem;
     width: 20px;
 }
@@ -1636,7 +1636,7 @@ body.light-mode .pc-details p {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #4c3a6e;
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -1646,7 +1646,7 @@ body.light-mode .pc-details p {
 }
 
 .btn-primary {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     color: #ffffff;
     border: none;
     padding: 1rem 2rem;
@@ -1673,7 +1673,7 @@ body.light-mode .pc-details p {
 .chatbot-toggle {
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1713,7 +1713,7 @@ body.light-mode .pc-details p {
 
 .chatbot-header {
     padding: 1rem;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -1750,7 +1750,7 @@ body.light-mode .pc-details p {
 }
 
 .user-message {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     align-self: flex-end;
 }
 
@@ -1773,11 +1773,11 @@ body.light-mode .pc-details p {
 
 .chatbot-input input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #4c3a6e;
 }
 
 .chatbot-input button {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     border: none;
     color: #ffffff;
     padding: 0.8rem;

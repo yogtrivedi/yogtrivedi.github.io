@@ -35,10 +35,10 @@
     width: 800px;
     height: 600px;
     background: linear-gradient(180deg, #000428 0%, #004e92 100%);
-    border: 3px solid #667eea;
+    border: 3px solid #4c3a6e;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 50px rgba(76, 58, 110, 0.7);
 }
 
 .game-canvas {
@@ -63,7 +63,7 @@
     background: rgba(0, 0, 0, 0.7);
     padding: 10px 20px;
     border-radius: 5px;
-    border: 2px solid #667eea;
+    border: 2px solid #4c3a6e;
 }
 
 .game-stat-label {
@@ -74,7 +74,7 @@
 .game-stat-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #667eea;
+    color: #5a3472;
 }
 
 .game-close {
@@ -118,8 +118,8 @@
 .game-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 3rem;
-    color: #667eea;
-    text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    color: #5a3472;
+    text-shadow: 0 0 20px rgba(90, 52, 114, 0.8);
     margin-bottom: 2rem;
     animation: titlePulse 2s infinite;
 }
@@ -141,7 +141,7 @@
 }
 
 .game-start-btn {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #4c3a6e, #5a3472);
     border: none;
     color: white;
     padding: 15px 40px;
@@ -150,22 +150,22 @@
     border-radius: 5px;
     cursor: pointer !important;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 5px 20px rgba(76, 58, 110, 0.5);
     animation: buttonPulse 2s infinite;
 }
 
 @keyframes buttonPulse {
     0%, 100% { 
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 5px 20px rgba(76, 58, 110, 0.5);
     }
     50% { 
-        box-shadow: 0 8px 40px rgba(102, 126, 234, 0.8);
+        box-shadow: 0 8px 40px rgba(76, 58, 110, 0.9);
     }
 }
 
 .game-start-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 8px 30px rgba(76, 58, 110, 0.7);
 }
 
 .game-over-screen {
@@ -210,13 +210,13 @@
 }
 
 .unlocked-skills h3 {
-    color: #667eea;
+    color: #5a3472;
     margin-bottom: 10px;
 }
 
 .skill-tag {
     display: inline-block;
-    background: rgba(102, 126, 234, 0.3);
+    background: rgba(76, 58, 110, 0.4);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;

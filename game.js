@@ -66,7 +66,7 @@ function initGame() {
         width: 40,
         height: 40,
         speed: 5,
-        color: '#667eea'
+        color: '#4c3a6e'
     };
     
     asteroids = [];
