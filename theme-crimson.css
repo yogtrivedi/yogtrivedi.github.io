@@ -1,19 +1,19 @@
 /* Crimson Red & Black Theme Override */
 body.crimson-theme {
-    --primary-color: #8B0000;
-    --secondary-color: #DC143C;
-    --accent-color: #FF4444;
-    --glow-color: rgba(139, 0, 0, 0.7);
+    --primary-color: #4A0000;
+    --secondary-color: #6B0000;
+    --accent-color: #8B0000;
+    --glow-color: rgba(74, 0, 0, 0.8);
 }
 
 /* Stars */
 body.crimson-theme .star-shape {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
-    box-shadow: 0 0 20px rgba(220, 20, 60, 0.7);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
+    box-shadow: 0 0 20px rgba(107, 0, 0, 0.9);
 }
 
 body.crimson-theme .star-item:hover .star-shape {
-    box-shadow: 0 0 30px rgba(220, 20, 60, 0.9);
+    box-shadow: 0 0 30px rgba(139, 0, 0, 1);
 }
 
 /* Title and Headers */
@@ -21,38 +21,87 @@ body.crimson-theme .title-line,
 body.crimson-theme .section-title,
 body.crimson-theme .hero-title,
 body.crimson-theme .nav-logo .logo-text {
-    background: linear-gradient(45deg, #DC143C, #FF4444);
+    background: linear-gradient(45deg, #6B0000, #8B0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 body.crimson-theme .main-title {
-    text-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+    text-shadow: 0 0 30px rgba(107, 0, 0, 0.7);
 }
 
 body.crimson-theme .subtitle {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(220, 20, 60, 0.2);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(107, 0, 0, 0.4);
 }
 
 /* Navigation */
 body.crimson-theme .nav-link::after {
-    background: linear-gradient(45deg, #DC143C, #FF4444);
+    background: linear-gradient(45deg, #6B0000, #8B0000);
 }
 
 body.crimson-theme .game-nav-link {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
 }
 
 body.crimson-theme .game-nav-link:hover {
-    background: linear-gradient(45deg, #DC143C, #8B0000);
+    background: linear-gradient(45deg, #6B0000, #4A0000);
 }
 
 /* Icons */
 body.crimson-theme .skill-item i,
 body.crimson-theme .contact-item i,
 body.crimson-theme .menu-item-detail i {
-    color: #DC143C;
+    color: #8B0000;
+}
+
+/* Stars */
+body.crimson-theme .star-shape {
+    background: linear-gradient(45deg, #4A0000, #6B0000);
+    box-shadow: 0 0 20px rgba(107, 0, 0, 0.9);
+}
+
+body.crimson-theme .star-item:hover .star-shape {
+    box-shadow: 0 0 30px rgba(139, 0, 0, 1);
+}
+
+/* Title and Headers */
+body.crimson-theme .title-line,
+body.crimson-theme .section-title,
+body.crimson-theme .hero-title,
+body.crimson-theme .nav-logo .logo-text {
+    background: linear-gradient(45deg, #6B0000, #8B0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.crimson-theme .main-title {
+    text-shadow: 0 0 30px rgba(107, 0, 0, 0.8);
+}
+
+body.crimson-theme .subtitle {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(107, 0, 0, 0.5);
+}
+
+/* Navigation */
+body.crimson-theme .nav-link::after {
+    background: linear-gradient(45deg, #6B0000, #8B0000);
+}
+
+body.crimson-theme .game-nav-link {
+    background: linear-gradient(45deg, #4A0000, #6B0000);
+}
+
+body.crimson-theme .game-nav-link:hover {
+    background: linear-gradient(45deg, #6B0000, #4A0000);
+}
+
+/* Icons */
+body.crimson-theme .skill-item i,
+body.crimson-theme .contact-item i,
+body.crimson-theme .menu-item-detail i {
+    color: #8B0000;
 }
 
 /* Buttons */
@@ -60,159 +109,159 @@ body.crimson-theme .btn-primary,
 body.crimson-theme .tab-btn.active,
 body.crimson-theme .chatbot-toggle,
 body.crimson-theme .chatbot-header {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
 }
 
 body.crimson-theme .chatbot-input button {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
 }
 
 /* Skill Tags */
 body.crimson-theme .skill-tag,
 body.crimson-theme .project-tech span {
-    background: rgba(139, 0, 0, 0.2);
-    color: #DC143C;
-    border: 1px solid rgba(220, 20, 60, 0.3);
+    background: rgba(74, 0, 0, 0.3);
+    color: #8B0000;
+    border: 1px solid rgba(107, 0, 0, 0.4);
 }
 
 /* Menu Cards */
 body.crimson-theme .menu-item-card:hover {
-    border-color: rgba(220, 20, 60, 0.5);
-    box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+    border-color: rgba(107, 0, 0, 0.6);
+    box-shadow: 0 20px 40px rgba(107, 0, 0, 0.5);
 }
 
 body.crimson-theme .menu-item-title {
-    background: linear-gradient(45deg, #DC143C, #FF4444);
+    background: linear-gradient(45deg, #6B0000, #8B0000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 body.crimson-theme .menu-item-image {
-    background: linear-gradient(135deg, #8B0000, #DC143C);
+    background: linear-gradient(135deg, #4A0000, #6B0000);
 }
 
 /* Timeline */
 body.crimson-theme .timeline::before {
-    background: linear-gradient(to bottom, #DC143C, #8B0000);
+    background: linear-gradient(to bottom, #6B0000, #4A0000);
 }
 
 body.crimson-theme .timeline-marker {
-    background: #DC143C;
+    background: #6B0000;
 }
 
 body.crimson-theme .timeline-content h4 {
-    color: #DC143C;
+    color: #8B0000;
 }
 
 body.crimson-theme .education-item {
-    border-left: 4px solid #DC143C;
+    border-left: 4px solid #6B0000;
 }
 
 body.crimson-theme .skill-category h3 {
-    color: #DC143C;
+    color: #8B0000;
 }
 
 /* Projects */
 body.crimson-theme .project-image {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
 }
 
 /* Profile Card */
 body.crimson-theme .pc-contact-btn {
-    background: rgba(220, 20, 60, 0.9);
+    background: rgba(107, 0, 0, 0.9);
 }
 
 body.crimson-theme .pc-contact-btn:hover {
-    background: rgba(220, 20, 60, 1);
-    box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+    background: rgba(139, 0, 0, 1);
+    box-shadow: 0 5px 15px rgba(107, 0, 0, 0.6);
 }
 
 /* Custom Cursor */
 body.crimson-theme .custom-cursor {
-    background: rgba(220, 20, 60, 0.5);
-    box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    background: rgba(107, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(107, 0, 0, 0.9);
 }
 
 body.crimson-theme .custom-cursor-trail {
-    background: rgba(139, 0, 0, 0.3);
+    background: rgba(74, 0, 0, 0.4);
 }
 
 body.crimson-theme .custom-cursor.hovering {
-    background: rgba(220, 20, 60, 0.8);
+    background: rgba(139, 0, 0, 0.9);
 }
 
 /* Weather Toggle */
 body.crimson-theme .weather-toggle,
 body.crimson-theme .game-launch-btn {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
-    border-color: #DC143C;
+    background: linear-gradient(45deg, #4A0000, #6B0000);
+    border-color: #6B0000;
 }
 
 /* Game Elements */
 body.crimson-theme .game-container {
-    border-color: #DC143C;
-    box-shadow: 0 0 50px rgba(220, 20, 60, 0.7);
+    border-color: #6B0000;
+    box-shadow: 0 0 50px rgba(107, 0, 0, 0.8);
 }
 
 body.crimson-theme .game-stat {
-    border-color: #DC143C;
+    border-color: #6B0000;
 }
 
 body.crimson-theme .game-stat-value {
-    color: #DC143C;
+    color: #8B0000;
 }
 
 body.crimson-theme .game-title {
-    color: #DC143C;
-    text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+    color: #8B0000;
+    text-shadow: 0 0 20px rgba(139, 0, 0, 0.9);
 }
 
 body.crimson-theme .game-start-btn {
-    background: linear-gradient(45deg, #8B0000, #DC143C);
-    box-shadow: 0 5px 20px rgba(220, 20, 60, 0.5);
+    background: linear-gradient(45deg, #4A0000, #6B0000);
+    box-shadow: 0 5px 20px rgba(107, 0, 0, 0.6);
 }
 
 body.crimson-theme .unlocked-skills h3 {
-    color: #DC143C;
+    color: #8B0000;
 }
 
 body.crimson-theme .skill-tag {
-    background: rgba(139, 0, 0, 0.4);
+    background: rgba(74, 0, 0, 0.5);
 }
 
 /* Scroll Arrow */
 body.crimson-theme .scroll-arrow {
-    background: linear-gradient(to bottom, #DC143C, transparent);
+    background: linear-gradient(to bottom, #6B0000, transparent);
 }
 
 body.crimson-theme .scroll-arrow::after {
-    border-right: 2px solid #DC143C;
-    border-bottom: 2px solid #DC143C;
+    border-right: 2px solid #6B0000;
+    border-bottom: 2px solid #6B0000;
 }
 
-/* Watercolor Background - Crimson */
+/* Watercolor Background - Dark Crimson */
 body.crimson-theme .watercolor-bg {
     background: 
-        radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(74, 0, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(107, 0, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
         #000000;
 }
 
 @keyframes watercolorFlowCrimson {
     0%, 100% {
         background: 
-            radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 20% 80%, rgba(74, 0, 0, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(107, 0, 0, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
             #000000;
     }
     50% {
         background: 
-            radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 60% 60%, rgba(255, 68, 68, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(74, 0, 0, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 20% 80%, rgba(107, 0, 0, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 60% 60%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
             #000000;
     }
 }

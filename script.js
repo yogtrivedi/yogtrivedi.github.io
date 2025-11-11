@@ -1017,7 +1017,7 @@ function updateGlobeGlow(theme) {
     if (!globe || !globe.glowMesh) return;
     
     const color = theme === 'crimson' 
-        ? new THREE.Color(0xDC143C) 
+        ? new THREE.Color(0x6B0000) 
         : new THREE.Color(0x4c3a6e);
     
     globe.glowMesh.material.uniforms.glowColor.value = color;
