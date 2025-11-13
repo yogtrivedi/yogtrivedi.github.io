@@ -48,8 +48,18 @@
             <button class="game-close" id="gameClose">×</button>
             <canvas class="game-canvas" id="gameCanvas"></canvas>
             
+            <div class="username-screen" id="usernameScreen">
+                <h1 class="game-title">🚀 DEFEND EARTH 🌍</h1>
+                <div class="username-form">
+                    <label for="usernameInput">Enter Your Name:</label>
+                    <input type="text" id="usernameInput" maxlength="15" placeholder="Astronaut" autocomplete="off">
+                    <button class="game-start-btn" id="usernameSubmitBtn">CONTINUE</button>
+                </div>
+            </div>
+            
             <div class="game-start-screen" id="gameStartScreen">
                 <h1 class="game-title">🚀 DEFEND EARTH 🌍</h1>
+                <div class="player-welcome" id="playerWelcome"></div>
                 <div class="game-instructions">
                     <p><strong>MISSION:</strong> Protect Earth from asteroids!</p>
                     <p>⬅️ ➡️ Arrow Keys to Move | SPACE to Shoot</p>
@@ -62,6 +72,12 @@
                 <h1 class="game-over-title">MISSION COMPLETE!</h1>
                 <div class="game-final-score">Final Score: <span id="finalScore">0</span></div>
                 <div class="unlocked-skills" id="unlockedSkillsDisplay"></div>
+                
+                <div class="leaderboard" id="leaderboard">
+                    <h2>🏆 LEADERBOARD 🏆</h2>
+                    <div class="leaderboard-list" id="leaderboardList"></div>
+                </div>
+                
                 <button class="game-start-btn" id="gameRestartBtn">PLAY AGAIN</button>
             </div>
         </div>

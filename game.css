@@ -101,7 +101,7 @@
     transform: scale(1.1);
 }
 
-.game-start-screen {
+.username-screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -113,6 +113,67 @@
     align-items: center;
     justify-content: center;
     z-index: 10001;
+}
+
+.username-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.username-form label {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.username-form input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #4c3a6e;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-family: 'Space Grotesk', sans-serif;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.username-form input:focus {
+    outline: none;
+    border-color: #5a3472;
+    box-shadow: 0 0 20px rgba(90, 52, 114, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.username-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.game-start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.player-welcome {
+    color: #5a3472;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(90, 52, 114, 0.5);
 }
 
 .game-title {
@@ -222,6 +283,107 @@
     border-radius: 5px;
     margin: 5px;
     font-size: 0.9rem;
+}
+
+.leaderboard {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4c3a6e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.leaderboard h2 {
+    color: #ffd700;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(76, 58, 110, 0.3);
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    background: rgba(76, 58, 110, 0.5);
+    transform: translateX(5px);
+}
+
+.leaderboard-item.current-player {
+    background: rgba(90, 52, 114, 0.6);
+    border: 2px solid #5a3472;
+    box-shadow: 0 0 15px rgba(90, 52, 114, 0.5);
+}
+
+.leaderboard-rank {
+    font-weight: bold;
+    color: #ffd700;
+    min-width: 40px;
+}
+
+.leaderboard-rank.top-1 {
+    color: #ffd700;
+    font-size: 1.3rem;
+}
+
+.leaderboard-rank.top-2 {
+    color: #c0c0c0;
+    font-size: 1.2rem;
+}
+
+.leaderboard-rank.top-3 {
+    color: #cd7f32;
+    font-size: 1.1rem;
+}
+
+.leaderboard-name {
+    flex: 1;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.leaderboard-score {
+    font-weight: bold;
+    color: #5a3472;
+    min-width: 80px;
+    text-align: right;
+}
+
+.leaderboard::-webkit-scrollbar {
+    width: 8px;
+}
+
+.leaderboard::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.leaderboard::-webkit-scrollbar-thumb {
+    background: #4c3a6e;
+    border-radius: 10px;
+}
+
+.leaderboard::-webkit-scrollbar-thumb:hover {
+    background: #5a3472;
 }
 
 .konami-hint {

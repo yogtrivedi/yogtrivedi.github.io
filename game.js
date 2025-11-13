@@ -5,6 +5,8 @@ let player, asteroids, bullets, particles;
 let gameScore, gameSkills, gameLives;
 let keysPressed = {};
 let unlockedSkills = [];
+let currentUsername = '';
+let currentSessionScore = 0;
 
 // Yog's skills to unlock
 const SKILLS = [
@@ -74,13 +76,30 @@ function initGame() {
     particles = [];
     unlockedSkills = [];
     
+    // Show username screen first
+    showUsernameScreen();
+    
     // Event listeners
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
     
+    const usernameSubmitBtn = document.getElementById('usernameSubmitBtn');
+    const usernameInput = document.getElementById('usernameInput');
     const startBtn = document.getElementById('gameStartBtn');
     const closeBtn = document.getElementById('gameClose');
     const restartBtn = document.getElementById('gameRestartBtn');
+    
+    if (usernameSubmitBtn) {
+        usernameSubmitBtn.addEventListener('click', submitUsername);
+    }
+    
+    if (usernameInput) {
+        usernameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitUsername();
+            }
+        });
+    }
     
     if (startBtn) {
         startBtn.addEventListener('click', startGame);
@@ -93,6 +112,36 @@ function initGame() {
     if (restartBtn) {
         restartBtn.addEventListener('click', restartGame);
     }
+}
+
+function showUsernameScreen() {
+    const usernameScreen = document.getElementById('usernameScreen');
+    const startScreen = document.getElementById('gameStartScreen');
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    
+    if (usernameScreen) usernameScreen.style.display = 'flex';
+    if (startScreen) startScreen.style.display = 'none';
+    if (gameOverScreen) gameOverScreen.classList.remove('active');
+}
+
+function submitUsername() {
+    const usernameInput = document.getElementById('usernameInput');
+    const username = usernameInput.value.trim();
+    
+    if (username === '') {
+        currentUsername = 'Astronaut';
+    } else {
+        currentUsername = username;
+    }
+    
+    // Hide username screen and show start screen
+    const usernameScreen = document.getElementById('usernameScreen');
+    const startScreen = document.getElementById('gameStartScreen');
+    const playerWelcome = document.getElementById('playerWelcome');
+    
+    if (usernameScreen) usernameScreen.style.display = 'none';
+    if (startScreen) startScreen.style.display = 'flex';
+    if (playerWelcome) playerWelcome.textContent = `Welcome, ${currentUsername}!`;
 }
 
 function startGame() {
@@ -126,7 +175,13 @@ function closeGame() {
 function restartGame() {
     const gameOverScreen = document.getElementById('gameOverScreen');
     if (gameOverScreen) gameOverScreen.classList.remove('active');
-    startGame();
+    
+    // Reset username and show username screen again
+    currentUsername = '';
+    const usernameInput = document.getElementById('usernameInput');
+    if (usernameInput) usernameInput.value = '';
+    
+    showUsernameScreen();
 }
 
 function handleKeyDown(e) {
@@ -351,6 +406,10 @@ function updateHUD() {
 
 function endGame() {
     gameActive = false;
+    currentSessionScore = gameScore;
+    
+    // Save score to leaderboard
+    saveScore(currentUsername, gameScore);
     
     const gameOverScreen = document.getElementById('gameOverScreen');
     const finalScoreEl = document.getElementById('finalScore');
@@ -367,7 +426,63 @@ function endGame() {
         `;
     }
     
+    // Display leaderboard
+    displayLeaderboard();
+    
     if (gameOverScreen) gameOverScreen.classList.add('active');
+}
+
+function saveScore(username, score) {
+    // Get existing leaderboard from localStorage
+    let leaderboard = JSON.parse(localStorage.getItem('gameLeaderboard') || '[]');
+    
+    // Add new score
+    leaderboard.push({
+        username: username,
+        score: score,
+        timestamp: Date.now()
+    });
+    
+    // Sort by score (descending) and keep top 50
+    leaderboard.sort((a, b) => b.score - a.score);
+    leaderboard = leaderboard.slice(0, 50);
+    
+    // Save back to localStorage
+    localStorage.setItem('gameLeaderboard', JSON.stringify(leaderboard));
+}
+
+function displayLeaderboard() {
+    const leaderboardList = document.getElementById('leaderboardList');
+    if (!leaderboardList) return;
+    
+    // Get leaderboard from localStorage
+    const leaderboard = JSON.parse(localStorage.getItem('gameLeaderboard') || '[]');
+    
+    if (leaderboard.length === 0) {
+        leaderboardList.innerHTML = '<p style="color: white; text-align: center; padding: 20px;">No scores yet. Be the first!</p>';
+        return;
+    }
+    
+    // Generate leaderboard HTML
+    leaderboardList.innerHTML = leaderboard.map((entry, index) => {
+        const rank = index + 1;
+        const isCurrentPlayer = entry.username === currentUsername && entry.score === currentSessionScore;
+        const rankClass = rank === 1 ? 'top-1' : rank === 2 ? 'top-2' : rank === 3 ? 'top-3' : '';
+        const itemClass = isCurrentPlayer ? 'leaderboard-item current-player' : 'leaderboard-item';
+        
+        let rankDisplay = `#${rank}`;
+        if (rank === 1) rankDisplay = '🥇';
+        else if (rank === 2) rankDisplay = '🥈';
+        else if (rank === 3) rankDisplay = '🥉';
+        
+        return `
+            <div class="${itemClass}">
+                <span class="leaderboard-rank ${rankClass}">${rankDisplay}</span>
+                <span class="leaderboard-name">${entry.username}${isCurrentPlayer ? ' (You)' : ''}</span>
+                <span class="leaderboard-score">${entry.score.toLocaleString()}</span>
+            </div>
+        `;
+    }).join('');
 }
 
 function gameLoop() {
